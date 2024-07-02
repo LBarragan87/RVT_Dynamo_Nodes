@@ -36,22 +36,26 @@ etiquetas = UnwrapElement(IN[0])
 ListaIds=[]
 TagNameList=[]
 TagIdList=[]
+ViewsList=[]
 for etiqueta in etiquetas:
     thisName=etiqueta.Name
     thisTagId=etiqueta.Id
     thisId = etiqueta.GetTaggedElementIds()
     ListaIds.append(thisId)
     TagIdList.append(thisTagId)
+    
+    ViewName=doc.GetElement(etiqueta.OwnerViewId).Name
     TagNameList.append(thisName)
-
+    ViewsList.append(ViewName)
+    
 FlattenedListaIds=List.Flatten(ListaIds)
 TaggedElementsName=[]
 TaggedElementIds=[]
 for elemento in FlattenedListaIds:
     getElement=doc.GetElement(elemento.HostElementId).Name
-    ElementId=doc.GetElement(elemento.HostElementId)
+    ElementId=elemento.HostElementId
     TaggedElementsName.append(getElement)
     #thisElementId=getElement.Id
     TaggedElementIds.append(ElementId)
 # Asigne la salida a la variable OUT.
-OUT = [TagIdList,TagNameList,TaggedElementIds,TaggedElementsName]
+OUT = [ViewsList,TagIdList,TagNameList,TaggedElementIds,TaggedElementsName]
