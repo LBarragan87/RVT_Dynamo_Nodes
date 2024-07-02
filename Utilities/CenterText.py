@@ -26,7 +26,6 @@ clr.AddReference("RevitServices")
 from RevitServices.Persistence import DocumentManager
 from RevitServices.Transactions import TransactionManager
 
-
 #Get Document
 doc = DocumentManager.Instance.CurrentDBDocument
 texto = UnwrapElement(IN[0])
