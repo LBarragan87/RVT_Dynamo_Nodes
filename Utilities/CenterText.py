@@ -28,6 +28,8 @@ from RevitServices.Transactions import TransactionManager
 
 #Get Document
 doc = DocumentManager.Instance.CurrentDBDocument
+
+#Inputs
 texto = UnwrapElement(IN[0])
 
 # Incluya el código debajo de esta línea
