@@ -28,7 +28,7 @@ from RevitServices.Transactions import TransactionManager
 
 #Get Document
 doc = DocumentManager.Instance.CurrentDBDocument
-
+######################################################################################
 #Create Functions
 def ElementsToList(Input):
     newList=[]
@@ -47,6 +47,7 @@ def PointToXYZ(ProtogeometryPoint):
     YFromInsertionPoint=MtoFt(Autodesk.DesignScript.Geometry.Point.get_Y(ProtogeometryPoint))
     ZFromInsertionPoint=MtoFt(Autodesk.DesignScript.Geometry.Point.get_Z(ProtogeometryPoint))
     return XYZ(XFromInsertionPoint,YFromInsertionPoint,ZFromInsertionPoint)
+######################################################################################
 #Inputs
 TextList = UnwrapElement(IN[0]) #Select Elements to move
 InsertionPoint = UnwrapElement(IN[1]) #Specify new coordinates of Insertion Point (Coordinates on METERS)
@@ -54,15 +55,18 @@ InsertionPoint = UnwrapElement(IN[1]) #Specify new coordinates of Insertion Poin
 #Input List Conversion
 convertedTextList=ElementsToList(TextList)
 
+######################################################################################
 # Start Code
 TransactionManager.Instance.EnsureInTransaction(doc)
 
 newCoord= PointToXYZ(InsertionPoint)
 
+CoordList=[]
 for textNote in convertedTextList:
-    X=textNote.set_Coord(newCoord)
-
+    thisCoord=textNote.set_Coord(newCoord)
+    CoordList.append(InsertionPoint)
+    
 TransactionManager.Instance.TransactionTaskDone()
-
+######################################################################################
 # Output
-OUT = convertedTextList
+OUT = zip(convertedTextList,CoordList)
