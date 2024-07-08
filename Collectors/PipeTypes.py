@@ -31,7 +31,6 @@ doc = DocumentManager.Instance.CurrentDBDocument
 ######################################################
 # Start Code
 PipeTypes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipeCurves).WhereElementIsElementType().ToElements()
-#clr.Autodesk.Revit.DB.Plumbing.Pipe.Create(doc)
 ######################################################
 # Output
 OUT = PipeTypes
