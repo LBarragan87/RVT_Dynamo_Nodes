@@ -30,7 +30,7 @@ from RevitServices.Transactions import TransactionManager
 doc = DocumentManager.Instance.CurrentDBDocument
 ######################################################
 # Start Code
-PipeTypes = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipingSystem).WhereElementIsElementType().ToElements()
+PipingSystems = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_PipingSystem).WhereElementIsElementType().ToElements()
 ######################################################
 # Output
-OUT = PipeTypes
+OUT = PipingSystems
